@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 
 const sassMiddleware = require('./lib/sass-middleware');
@@ -22,13 +21,11 @@ app.use(
 );
 app.use(express.static('public'));
 
-const userApiRoutes = require('./routes/users-api');
-const widgetApiRoutes = require('./routes/widgets-api');
-const usersRoutes = require('./routes/users');
+const pollsRoutes = require('./routes/polls');
+const pollsApiRoutes = require('./routes/poll-api');
 
-app.use('/api/users', userApiRoutes);
-app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
+app.use('/api/polls', pollsRoutes);
+app.use('/polls', pollsApiRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
