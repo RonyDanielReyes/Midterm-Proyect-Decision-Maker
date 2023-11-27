@@ -1,10 +1,8 @@
 const express = require('express');
 const router  = express.Router();
-const pollQueries = require('../db/queries/polls');
-const choiceQueries = require('..db/queries/choices');
 
-
+router.get('/', (req, res) => {
+  res.render('admin');
+});
 
 module.exports = router;
-
-//
