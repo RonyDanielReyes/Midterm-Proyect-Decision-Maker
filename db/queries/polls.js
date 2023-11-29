@@ -1,10 +1,16 @@
 const db = require('../connection');
 
-const getUsers = () => {
+/**
+ * Get polls from the database..
+ * @return {Promise<{}>} 
+ */
+
+const getPolls = () => {
   return db.query('SELECT * FROM polls;')
     .then(data => {
       return data.rows;
     });
 };
 
-module.exports = { getUsers };
+
+module.exports = { getPolls };
