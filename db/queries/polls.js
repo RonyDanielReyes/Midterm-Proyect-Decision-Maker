@@ -2,9 +2,8 @@ const db = require('../connection');
 
 /**
  * Get polls from the database..
- * @return {Promise<{}>} 
+ * @return {Promise<{}>} A promise to the user.
  */
-
 const getPolls = () => {
   return db.query('SELECT * FROM polls;')
     .then(data => {
@@ -84,5 +83,10 @@ const addPoll = function(poll) {
     });
 };
 
-
-module.exports = { getPolls, getPollById, getPollByLink, closePoll, addPoll };
+module.exports = {
+  getPolls,
+  getPollById,
+  addPoll,
+  getPollByLink,
+  closePoll,
+};
