@@ -24,4 +24,21 @@ const getPollById = (id) => {
     });
 };
 
-module.exports = { getPolls, getPollById };
+/**
+ * Get poll with given link (admin or voter) from the database.
+ * @param link poll link.
+ * @return {Promise<{}>} A promise to the user.
+ */
+const getPollByLink = (link) => {
+  return db.query(
+    `SELECT * FROM polls
+    WHERE voter_link = $1
+    OR admin_link = $1
+    `
+    , [link])
+    .then(data => {
+      return data.rows[0];
+    });
+};
+
+module.exports = { getPolls, getPollById, getPollByLink };
