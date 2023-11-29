@@ -1,15 +1,9 @@
-// Client facing scripts here
+
 $(()=>{
   $("#refresh_btn").on('click',(event)=>{
     event.preventDefault();
     window.location.reload();
-    // $.ajax({
-    //   method:"GET",
-    //   url:$("#admintoken").text(),
-    //   success:(data)=>{
-    //     console.log("here",data);
-    //   }
-    // })
+
   });
 
 
@@ -20,7 +14,6 @@ $(()=>{
       method:"POST",
       url:link,
       success:((data)=>{
-        // console.log(data);
         window.location.href = "/";
       })
 
