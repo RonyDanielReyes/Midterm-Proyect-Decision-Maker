@@ -19,13 +19,16 @@ app.use(
     isSass: false, 
   })
 );
+
 app.use(express.static('public'));
 
-const pollsRoutes = require('./routes/polls');
-const pollsApiRoutes = require('./routes/poll-api');
+const newRoutes = require('./routes/new');
+const voteRoutes = require('./routes/vote');
+const adminRoutes = require('./routes/admin');
 
-app.use('/api/polls', pollsRoutes);
-app.use('/polls', pollsApiRoutes);
+app.use('/new', newRoutes);
+app.use('/vote', voteRoutes);
+app.use('/admin', adminRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
