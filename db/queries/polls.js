@@ -41,4 +41,24 @@ const getPollByLink = (link) => {
     });
 };
 
-module.exports = { getPolls, getPollById, getPollByLink };
+/**
+ * set poll to be closed
+ * @param id poll id.
+ * @return {Promise<{}>} A promise to the user.
+ */
+const closePoll = (id) => {
+  return db.query(
+    `
+    UPDATE polls
+    SET active = false
+    WHERE id = $1
+    RETURNING *;
+    `
+    , [id])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+
+module.exports = { getPolls, getPollById, getPollByLink, closePoll };
