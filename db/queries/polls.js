@@ -60,5 +60,29 @@ const closePoll = (id) => {
     });
 };
 
+/**
+ * Add a new poll to the database.
+ * @param {{}} poll
+ * @return {Promise<{}>} A promise to the user.
+ */
+const addPoll = function(poll) {
+  return db
+    .query(
+      `
+    INSERT INTO polls (creator_email, active, title, description, voter_link, admin_link)
 
-module.exports = { getPolls, getPollById, getPollByLink, closePoll };
+    VALUES ($1, $2, $3, $4, $5, $6)
+    RETURNING *;
+    `,
+      [poll.creator_email, poll.active, poll.title, poll.description, poll.voter_link, poll.admin_link]
+    )
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+
+module.exports = { getPolls, getPollById, getPollByLink, closePoll, addPoll };
